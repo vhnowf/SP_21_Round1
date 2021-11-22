@@ -25,3 +25,6 @@ Route::get('/contribution', function(){
     return view('contribution');
 });
 
+Route::get('/login', function(){
+    return view('login');
+})->name('login');
