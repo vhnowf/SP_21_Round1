@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb2487dad6af0c0f5df77f62779fd30e3
+class ComposerStaticInitee6fb4ee489aedfebb41c99daeded914
 {
     public static $files = array (
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
@@ -523,16 +523,7 @@ class ComposerStaticInitb2487dad6af0c0f5df77f62779fd30e3
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
-        'App\\Models\\Admin' => __DIR__ . '/../..' . '/app/Models/Admin.php',
-        'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
-        'App\\Models\\Changed_Product' => __DIR__ . '/../..' . '/app/Models/Changed_Product.php',
-        'App\\Models\\Image' => __DIR__ . '/../..' . '/app/Models/Image.php',
-        'App\\Models\\Order' => __DIR__ . '/../..' . '/app/Models/Order.php',
-        'App\\Models\\Order_Detail' => __DIR__ . '/../..' . '/app/Models/Order_Detail.php',
-        'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',
-        'App\\Models\\Return_Product' => __DIR__ . '/../..' . '/app/Models/Return_Product.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
-        'App\\Models\\Voucher' => __DIR__ . '/../..' . '/app/Models/Voucher.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
@@ -5368,10 +5359,10 @@ class ComposerStaticInitb2487dad6af0c0f5df77f62779fd30e3
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb2487dad6af0c0f5df77f62779fd30e3::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb2487dad6af0c0f5df77f62779fd30e3::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitb2487dad6af0c0f5df77f62779fd30e3::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitb2487dad6af0c0f5df77f62779fd30e3::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitee6fb4ee489aedfebb41c99daeded914::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitee6fb4ee489aedfebb41c99daeded914::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitee6fb4ee489aedfebb41c99daeded914::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitee6fb4ee489aedfebb41c99daeded914::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -14,10 +14,11 @@ class CreateVoucherTable extends Migration
     public function up()
     {
         Schema::create('voucher', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('description');
             $table->integer('amount');
+            $table->integer('user_id')->unsigned();
+            $table->integer('image_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('image_id')->references('id')->on('featured_images');
             $table->timestamps();
         });
     }

@@ -183,9 +183,9 @@ class Filesystem
      * @return int|bool
      */
     public function put($path, $contents, $lock = false)
-{
-    return file_put_contents($path, $contents, 0);
-}
+    {
+        return file_put_contents($path, $contents, $lock ? LOCK_EX : 0);
+    }
 
     /**
      * Write the contents of a file, replacing it atomically if it already exists.
