@@ -14,7 +14,6 @@ use const PHP_SAPI;
 use const PHP_VERSION;
 use function array_diff;
 use function array_map;
-use function array_merge;
 use function assert;
 use function class_exists;
 use function count;
@@ -36,7 +35,6 @@ use PHPUnit\Runner\AfterLastTestHook;
 use PHPUnit\Runner\BaseTestRunner;
 use PHPUnit\Runner\BeforeFirstTestHook;
 use PHPUnit\Runner\DefaultTestResultCache;
-use PHPUnit\Runner\Extension\ExtensionHandler;
 use PHPUnit\Runner\Filter\ExcludeGroupFilterIterator;
 use PHPUnit\Runner\Filter\Factory;
 use PHPUnit\Runner\Filter\IncludeGroupFilterIterator;
@@ -52,6 +50,7 @@ use PHPUnit\Runner\TestSuiteSorter;
 use PHPUnit\Runner\Version;
 use PHPUnit\TextUI\XmlConfiguration\CodeCoverage\FilterMapper;
 use PHPUnit\TextUI\XmlConfiguration\Configuration;
+use PHPUnit\TextUI\XmlConfiguration\ExtensionHandler;
 use PHPUnit\TextUI\XmlConfiguration\Loader;
 use PHPUnit\TextUI\XmlConfiguration\PhpHandler;
 use PHPUnit\Util\Filesystem;
@@ -152,8 +151,6 @@ final class TestRunner extends BaseTestRunner
 
         $this->handleConfiguration($arguments);
 
-        $warnings = array_merge($warnings, $arguments['warnings']);
-
         if (is_int($arguments['columns']) && $arguments['columns'] < 16) {
             $arguments['columns']   = 16;
             $tooFewColumnsRequested = true;
@@ -248,8 +245,8 @@ final class TestRunner extends BaseTestRunner
 
         unset($listener, $listenerNeeded);
 
-        if ($arguments['convertDeprecationsToExceptions']) {
-            $result->convertDeprecationsToExceptions(true);
+        if (!$arguments['convertDeprecationsToExceptions']) {
+            $result->convertDeprecationsToExceptions(false);
         }
 
         if (!$arguments['convertErrorsToExceptions']) {
@@ -883,17 +880,13 @@ final class TestRunner extends BaseTestRunner
     }
 
     /**
-     * @throws \PHPUnit\TextUI\XmlConfiguration\Exception
      * @throws Exception
+     * @throws \PHPUnit\TextUI\XmlConfiguration\Exception
      */
     private function handleConfiguration(array &$arguments): void
     {
         if (!isset($arguments['configurationObject']) && isset($arguments['configuration'])) {
             $arguments['configurationObject'] = (new Loader)->load($arguments['configuration']);
-        }
-
-        if (!isset($arguments['warnings'])) {
-            $arguments['warnings'] = [];
         }
 
         $arguments['debug']     = $arguments['debug'] ?? false;
@@ -1028,7 +1021,7 @@ final class TestRunner extends BaseTestRunner
             $extensionHandler = new ExtensionHandler;
 
             foreach ($arguments['configurationObject']->extensions() as $extension) {
-                $extensionHandler->registerExtension($extension, $this);
+                $this->addExtension($extensionHandler->createHookInstance($extension));
             }
 
             foreach ($arguments['configurationObject']->listeners() as $listener) {
@@ -1089,7 +1082,7 @@ final class TestRunner extends BaseTestRunner
         $extensionHandler = new ExtensionHandler;
 
         foreach ($arguments['extensions'] as $extension) {
-            $extensionHandler->registerExtension($extension, $this);
+            $this->addExtension($extensionHandler->createHookInstance($extension));
         }
 
         unset($extensionHandler);
@@ -1101,7 +1094,7 @@ final class TestRunner extends BaseTestRunner
         $arguments['cacheResult']                                     = $arguments['cacheResult'] ?? true;
         $arguments['colors']                                          = $arguments['colors'] ?? DefaultResultPrinter::COLOR_DEFAULT;
         $arguments['columns']                                         = $arguments['columns'] ?? 80;
-        $arguments['convertDeprecationsToExceptions']                 = $arguments['convertDeprecationsToExceptions'] ?? false;
+        $arguments['convertDeprecationsToExceptions']                 = $arguments['convertDeprecationsToExceptions'] ?? true;
         $arguments['convertErrorsToExceptions']                       = $arguments['convertErrorsToExceptions'] ?? true;
         $arguments['convertNoticesToExceptions']                      = $arguments['convertNoticesToExceptions'] ?? true;
         $arguments['convertWarningsToExceptions']                     = $arguments['convertWarningsToExceptions'] ?? true;
@@ -1174,8 +1167,7 @@ final class TestRunner extends BaseTestRunner
             $filterFactory->addFilter(
                 new ReflectionClass(IncludeGroupFilterIterator::class),
                 array_map(
-                    static function (string $name): string
-                    {
+                    static function (string $name): string {
                         return '__phpunit_covers_' . $name;
                     },
                     $arguments['testsCovering']
@@ -1187,8 +1179,7 @@ final class TestRunner extends BaseTestRunner
             $filterFactory->addFilter(
                 new ReflectionClass(IncludeGroupFilterIterator::class),
                 array_map(
-                    static function (string $name): string
-                    {
+                    static function (string $name): string {
                         return '__phpunit_uses_' . $name;
                     },
                     $arguments['testsUsing']

@@ -51,7 +51,7 @@ class MergeConflictSolutionProvider implements HasSolutionsForThrowable
     {
         $branch = "'".trim(shell_exec("cd ${directory}; git branch | grep \\* | cut -d ' ' -f2"))."'";
 
-        if ($branch === "''") {
+        if (! isset($branch) || $branch === "''") {
             $branch = 'current branch';
         }
 
@@ -60,7 +60,7 @@ class MergeConflictSolutionProvider implements HasSolutionsForThrowable
 
     protected function hasMergeConflictExceptionMessage(Throwable $throwable): bool
     {
-        // For PHP 7.x and below
+        // For PHP 7.x and bellow
         if (Str::startsWith($throwable->getMessage(), 'syntax error, unexpected \'<<\'')) {
             return true;
         }
