@@ -41,6 +41,22 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.coupon.fields.description') }}
+                        </th>
+                        <td>
+                            {{ $coupon->description }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.coupon.fields.expired_date') }}
+                        </th>
+                        <td>
+                            {{ $coupon->expired_date }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.coupon.fields.photo') }}
                         </th>
                         <td>

@@ -18,7 +18,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
     Route::resource('users', 'UsersController');
 
-    // Coupons
+    // 
     Route::delete('coupons/destroy', 'CouponsController@massDestroy')->name('coupons.massDestroy');
     Route::post('coupons/media', 'CouponsController@storeMedia')->name('coupons.storeMedia');
     Route::post('coupons/ckmedia', 'CouponsController@storeCKEditorImages')->name('coupons.storeCKEditorImages');

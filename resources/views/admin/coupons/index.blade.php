@@ -31,6 +31,11 @@
                         <th>
                             {{ trans('cruds.coupon.fields.price') }}
                         </th>
+                        <!--
+                        <th>
+                            {{ trans('cruds.coupon.fields.description') }}
+                        </th>
+                        -->
                         <th>
                             {{ trans('cruds.coupon.fields.photo') }}
                         </th>
@@ -38,8 +43,13 @@
                             {{ trans('cruds.coupon.fields.total_codes') }}
                         </th>
                         <th>
+                            {{ trans('cruds.coupon.fields.expired_date') }}
+                        </th>
+                        <!-- 
+                        <th>
                             {{ trans('cruds.coupon.fields.purchased_codes') }}
                         </th>
+                        -->
                         @can('coupon_create')
                             <th>
                                 Add codes
@@ -65,6 +75,11 @@
                             <td>
                                 {{ $coupon->price ?? '' }}
                             </td>
+                            <!--
+                            <td>
+                                {{ $coupon->description ?? '' }}
+                            </td>
+                            -->
                             <td>
                                 @if($coupon->photo)
                                     <a href="{{ $coupon->photo->getUrl() }}" target="_blank" style="display: inline-block">
@@ -76,15 +91,18 @@
                                 {{ $coupon->codes_count ?? '' }}
                             </td>
                             <td>
-                                {{ $coupon->purchased_codes_count ?? '' }}
+                                {{ $coupon->expired_date ?? '' }}
                             </td>
+                            <!-- <td>
+                                {{ $coupon->purchased_codes_count ?? '' }}
+                            </td> -->
                             @can('coupon_create')
                                 <td>
                                     <form action="{{ route('admin.coupons.generateCodes', $coupon->id) }}" method="POST" class="form-inline">
                                         @csrf
                                         <div class="input-group input-group-sm">
-                                            <input type="number" class="form-control" name="amount" placeholder="Amount" required>
-                                        </div>
+                                            <input type="number" class="form-control" name="amount" placeholder="Amount"  required>
+                                        </div>  
                                         <input type="submit" class="btn btn-xs btn-success ml-2" value="Generate">
                                     </form>
                                 </td>

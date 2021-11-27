@@ -38,6 +38,7 @@ class CouponsController extends Controller
     {
         $coupon = Coupon::create($request->all());
 
+
         if ($request->input('photo', false)) {
             $coupon->addMedia(storage_path('tmp/uploads/' . $request->input('photo')))->toMediaCollection('photo');
         }

@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'site_title' => 'Digital Coupons',
+    'site_title' => 'SP21',
 ];

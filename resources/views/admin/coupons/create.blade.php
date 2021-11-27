@@ -21,10 +21,31 @@
             </div>
             <div class="form-group">
                 <label class="required" for="price">{{ trans('cruds.coupon.fields.price') }}</label>
-                <input class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" type="number" name="price" id="price" value="{{ old('price', '') }}" step="0.01" required>
+                <input class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" type="number" name="price" id="price" value="{{ old('price', '') }}" step="1000" required>
                 @if($errors->has('price'))
                     <div class="invalid-feedback">
                         {{ $errors->first('price') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.coupon.fields.price_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="description">{{ trans('cruds.coupon.fields.description') }}</label>
+                <textarea  class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" name="description" rows="15"  id="description"  cols="40"  value="{{ old('description', '') }}" required></textarea>
+               <!-- <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" type="text" name="description" id="description" value="{{ old('price', '') }}" step="0.01" required> -->
+                @if($errors->has('description'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('description') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.coupon.fields.price_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="expired_date">{{ trans('cruds.coupon.fields.expired_date') }}</label>
+                <input class="form-control {{ $errors->has('expired_date') ? 'is-invalid' : '' }}" type="date" name="expired_date" id="expired_date" value="{{ old('expired_date', '') }}" required>
+                @if($errors->has('expired_date'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('expired_date') }}
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.coupon.fields.price_helper') }}</span>
@@ -67,7 +88,7 @@
 <script>
     Dropzone.options.photoDropzone = {
     url: '{{ route('admin.coupons.storeMedia') }}',
-    maxFilesize: 2, // MB
+    maxFilesize: 5, // MB
     acceptedFiles: '.jpeg,.jpg,.png,.gif',
     maxFiles: 1,
     addRemoveLinks: true,

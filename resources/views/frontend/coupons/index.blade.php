@@ -4,7 +4,7 @@
 <div class="container">
     <div class="card">
         <div class="card-header">{{ __('cruds.coupon.title') }}</div>
-
+       <!-- <div class="card-header">{{ __('cruds.coupon.title_2') }}</div> -->
         <div class="card-body">
             @if(session('status'))
                 <div class="alert alert-success" role="alert">
@@ -19,9 +19,9 @@
                                 <img class="card-img-top" src="{{ $coupon->photo->preview ?? 'http://via.placeholder.com/286' }}" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $coupon->name }}</h5>
-                                    <p class="card-text">Price: <b>${{ $coupon->price }}</b></p>
+                                    <p class="card-text">Price: <b>{{ $coupon->price }}VND</b></p>
                                     <a href="{{ auth()->check() ? route('frontend.coupons.show', $coupon->id) : route('register') }}"
-                                       class="btn btn-success">Purchase</a>
+                                       class="btn btn-success">Add</a>
                                 </div>
                             </div>
                         </div>
