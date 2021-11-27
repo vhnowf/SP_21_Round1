@@ -76,9 +76,10 @@ cp .env.example .env
 
 Create new database in your local database system
 
-DB_DATABASE='your_db_name'	  
+DB_DATABASE='your_db_name'	
+
 DB_USERNAME='your_db_username'
- 
+
 DB_PASSWORD='your_db_password' 
 
 Generate stripe key in https://dashboard.stripe.com/ 
@@ -117,5 +118,5 @@ Admin account:
 - Password: **password**
 
 User account: 
-- Email: **admin@admin.com**
+- Email: **user@user.com**
 - Password: **password**
