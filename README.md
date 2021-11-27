@@ -105,6 +105,6 @@ php artisan serve
 ```
 ##
 Run localhost:8000 in your browser
-Admin account: 
-Email: admin@admin.com 
-Password: password
+- Admin account: 
+- Email: admin@admin.com 
+- Password: password
