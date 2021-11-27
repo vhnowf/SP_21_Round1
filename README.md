@@ -81,6 +81,7 @@ DB_USERNAME='your_db_username'
 DB_PASSWORD='your_db_password' 
 
 Generate stripe key in https://dashboard.stripe.com/ 
+
 STRIPE_KEY=YOUR_STRIPE_KEY
 STRIPE_SECRET=YOUR_STRIPE_SECRET
 
@@ -108,9 +109,11 @@ php artisan serve
 ```
 ##
 Run localhost:8000 in your browser
-- Admin account: 
+
+Admin account: 
 - Email: **admin@admin.com**
 - Password: **password**
-- User account: 
+
+User account: 
 - Email: **admin@admin.com**
 - Password: **password**
