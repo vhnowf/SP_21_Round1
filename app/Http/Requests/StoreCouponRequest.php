@@ -31,6 +31,9 @@ class StoreCouponRequest extends FormRequest
             'expired_date' => [
                 'required',
                 'after:today',
+            ],
+            'description'=>[
+                'required',
             ]
         ];
     }
