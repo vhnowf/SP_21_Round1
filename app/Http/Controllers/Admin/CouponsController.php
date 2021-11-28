@@ -36,11 +36,11 @@ class CouponsController extends Controller
 
     public function store(StoreCouponRequest $request)
     {
-        $coupon = Coupon::create($request->all());
-
+        dd($request->all());
+        $coupon = Coupon::create($request->validated());
 
         if ($request->input('photo', false)) {
-            $coupon->addMedia(storage_path('tmp/uploads/' . $request->input('photo')))->toMediaCollection('photo');
+            $coupon->addMedia(storage_path('tmp/uploads/' . $request->input('photo')))->toMediaCollection('photo','public');
         }
 
         if ($media = $request->input('ck-media', false)) {

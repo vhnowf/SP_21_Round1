@@ -82,8 +82,10 @@
                             -->
                             <td>
                                 @if($coupon->photo)
+                                   
                                     <a href="{{ $coupon->photo->getUrl() }}" target="_blank" style="display: inline-block">
-                                        <img src="{{ $coupon->photo->getUrl('thumb') }}">
+                                        <img src="{{ $coupon->photo->getUrl('thumb') }} "/>
+                                       
                                     </a>
                                 @endif
                             </td>
