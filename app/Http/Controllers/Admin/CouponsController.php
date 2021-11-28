@@ -36,7 +36,6 @@ class CouponsController extends Controller
 
     public function store(StoreCouponRequest $request)
     {
-        dd($request->all());
         $coupon = Coupon::create($request->validated());
 
         if ($request->input('photo', false)) {
