@@ -67,6 +67,16 @@
                 </a>
             </li>
         @endcan
+        @can('coupon_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.codes.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/coupons") || request()->is("admin/coupons/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-tags c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.code.title') }}
+                </a>
+            </li>
+        @endcan
         @can('purchase_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.purchases.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/purchases") || request()->is("admin/purchases/*") ? "c-active" : "" }}">

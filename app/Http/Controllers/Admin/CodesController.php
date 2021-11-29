@@ -17,7 +17,7 @@ class CodesController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('code_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('code_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $codes = Code::all();
 

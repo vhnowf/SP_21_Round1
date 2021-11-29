@@ -76,10 +76,11 @@ return [
             'name_helper'           => ' ',
             'description'           => 'Description',
             'description_helper'    => ' ',
-            'price'                 => 'Price',
+            'price'                 => 'Discount Price',
             'price_helper'          => ' ',
             'photo'                 => 'Photo',
             'photo_helper'          => ' ',
+            'code'                  => 'Code',
             'amount'                => 'Amount of vouchers',
             'amount_helper'         => ' ',
             'total_codes'           => 'Total codes',
@@ -140,4 +141,8 @@ return [
             'deleted_at_helper' => ' ',
         ],
     ],
+    'myvouchers'      => [
+        'title'            => 'My Vouchers',
+        'title_singular'   => 'My Voucher',
+    ]
 ];

@@ -20,8 +20,9 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $coupon->name }}</h5>
                                     <p class="card-text">Price: <b>{{ $coupon->price }}VND</b></p>
-                                    <a href="{{ auth()->check() ? route('frontend.coupons.show', $coupon->id) : route('register') }}"
-                                       class="btn btn-success">Add</a>
+                                    <p class="card-text">Expired date: <b>{{ $coupon->expired_date }}</b></p>
+                                    <a href="{{ auth()->check() ? route('frontend.coupons.show', $coupon->id) : route('login') }}"
+                                       class="btn btn-success">Detail</a>
                                 </div>
                             </div>
                         </div>

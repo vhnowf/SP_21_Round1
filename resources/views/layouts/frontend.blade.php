@@ -80,9 +80,12 @@
                                         {{ trans('cruds.coupon.title') }}
                                     </a>
                                     @can('purchase_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.purchases.index') }}">
+                                    <a class="dropdown-item" href="{{ route('frontend.housewarecoupons.index') }}">
+                                        {{ trans('cruds.myvouchers.title') }}
+                                    </a>
+                                <!--        <a class="dropdown-item" href="{{ route('frontend.purchases.index') }}">
                                             {{ trans('cruds.purchase.title') }}
-                                        </a>
+                                        </a> -->
                                     @endcan
 
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

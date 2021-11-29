@@ -1,5 +1,4 @@
 <?php
-
 Route::redirect('/', '/coupons');
 Route::get('/coupons', 'Frontend\CouponsController@index')->name('frontend.coupons.index');
 Auth::routes();
@@ -53,6 +52,9 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
 
     // Purchases
     Route::resource('purchases', 'PurchasesController')->only(['index', 'show']);
+
+    // My Vouchers 
+    Route::resource('housewarecoupons', 'HousewareCouponsController')->only(['index', 'show']);
 
     Route::get('frontend/profile', 'ProfileController@index')->name('profile.index');
     Route::post('frontend/profile', 'ProfileController@update')->name('profile.update');

@@ -65,45 +65,40 @@
                                     <td>
                                         @if($coupon->photo)
                                             <a href="{{ $coupon->photo->getUrl() }}" target="_blank" style="display: inline-block">
-                                                <img src="{{ $coupon->photo->getUrl('thumb') }}">
+                                                <img src="{{ $coupon->photo->getUrl('preview') }}">
                                             </a>
                                         @endif
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="form-group">
-                            <a class="btn btn-default" href="{{ route('frontend.coupons.index') }}">
-                                {{ trans('global.back_to_list') }}
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-    <div class="row justify-content-center mt-4">
+   <div class="row justify-content-center mt-4">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Purchase Now</div>
+                <div class="card-header">Save Now</div>
                 <div class="card-body">
                     <p>
-                        Coupon code reserved. Time to buy:
+                        Voucher code reserved. Time to save:
                         <span id="timer">{{ (int)($timerSeconds / 60) }}:{{ ($timerSeconds % 60) < 10 ? '0' : '' }}{{ $timerSeconds % 60 }}</span>
                     </p>
-                    <p>The price of a coupon is ${{ $coupon->price }}.</p>
+                  <!--  <p>The price of a coupon is ${{ $coupon->price }}.</p> -->
                     <form method="POST" action="{{ route('frontend.codes.purchase', $code) }}" class="card-form mt-3 mb-3">
                         @csrf
-                        <input type="hidden" name="payment_method" class="payment-method">
+                      <!--  <input type="hidden" name="payment_method" class="payment-method">
                         <input class="StripeElement mb-3" name="card_holder_name" placeholder="Card holder name" required>
                         <div class="col-lg-4 col-md-6">
                             <div id="card-element"></div>
                         </div>
                         <div id="card-errors" role="alert"></div>
                         <div class="form-group mt-3">
+                        -->
                             <button type="submit" class="btn btn-primary pay">
-                                Purchase
+                                Save voucher
                             </button>
                         </div>
                     </form>
@@ -111,7 +106,8 @@
             </div>
         </div>
     </div>
-</div>
+</div> 
+
 @endsection
 @section('styles')
 <style>

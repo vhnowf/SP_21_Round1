@@ -100,17 +100,17 @@ class CodesController extends Controller
         if ($code->reserved_by_id != $user->id || !$isReservationValid) {
             return redirect()
                 ->route('frontend.coupons.index')
-                ->withErrors(['Sorry, you didn\'t purchase on time']);
+                ->withErrors(['Sorry, you didn\'t save on time']);
         }
 
         $paymentMethod = $request->input('payment_method');
         $code->load('coupon');
 
-        try {
-            $user->createOrGetStripeCustomer();
-            $user->updateDefaultPaymentMethod($paymentMethod);
-            $user->charge($code->coupon->price * 100, $paymentMethod);
-
+       //   try {
+       //     $user->createOrGetStripeCustomer();
+        //    $user->updateDefaultPaymentMethod($paymentMethod);
+    //  $user->charge($code->coupon->price * 100, $paymentMethod);
+        
             $code->purchase()->create([
                 'user_id' => $user->id,
                 'price'   => $code->coupon->price,
@@ -122,12 +122,12 @@ class CodesController extends Controller
                 'purchased_at'    => now(),
                 'purchased_by_id' => $user->id,
             ]);
-        } catch (\Exception $exception) {
-            return redirect()->back()->withErrors([$exception->getMessage()]);
-        }
+       // } catch (\Exception $exception) {
+       //     return redirect()->back()->withErrors([$exception->getMessage()]);
+       // }
 
         return redirect()
             ->route('frontend.coupons.index')
-            ->with('message', 'The coupon has been purchased successfully. Code of the coupon is: ' . $code->code);
+            ->with('message', 'The voucher has been save successfully. Code of the voucher is: ' . $code->code);
     }
 }
